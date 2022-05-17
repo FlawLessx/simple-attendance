@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:attendance/bloc/pin_location/pin_location_cubit.dart';
 import 'package:attendance/pages/home_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
@@ -31,6 +32,9 @@ class _PickPinLocationPageState extends State<PickPinLocationPage> {
   @override
   void initState() {
     super.initState();
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+    }
     _getPosition();
   }
 
